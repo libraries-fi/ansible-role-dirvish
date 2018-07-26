@@ -1,0 +1,24 @@
+---
+# tasks file for libraries-fi.dirvish
+
+- name: Install dirvish required pachages.
+  pkgng:
+    name={{item}}
+    state=present
+  with_items:
+    - dirvish
+    - anacron
+
+
+- name: Copy dirvish master config and anacrontab.
+  copy:
+    src={{item}}
+    dest=/usr/local/etc/{{item}}
+  with_items:
+    - dirvish/master.conf
+    - anacrontab
+
+- name: Add custom anacron start command to crontab.
+  lineinfile:
+    line="@reboot                                 root    /usr/local/sbin/anacron -s"
+    dest=/etc/crontab

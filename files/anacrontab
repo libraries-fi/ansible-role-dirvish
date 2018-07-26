@@ -1,0 +1,15 @@
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/bin
+
+# days		make sure the command is executed at least every 'days' days
+# delay		delay in minutes, before a command starts
+# id		unique id of a command
+
+# days	delay	id		command
+1	0	daily		periodic daily
+7	0	weekly		periodic weekly
+30	0	monthly		periodic monthly
+1       0       daily           newsyslog
+1       0       dirvish         dirvish-expire --quiet && dirvish-runall --quiet
+1       0       dupemerge       /usr/local/bin/backup_merge_dupes
+1       0       shutdown        /sbin/shutdown -p +5
